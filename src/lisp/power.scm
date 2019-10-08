@@ -21,10 +21,11 @@
 ) 
 
 (define (fast-expr base n)
-    (cond ((= n 0) 1)
-        ( (even? n )(square (fast-expr base (/ n 2))))
-        (else (* base (fast-expr base (- n 1))))
-        )
+    (cond 
+            ((= n 0) 1)
+            ( (even? n )(square (fast-expr base (/ n 2))))
+            (else (* base (fast-expr base (- n 1))))
+    )
 )
 
 (define (even? n) 
@@ -36,16 +37,30 @@
         (reminder (- n x) x)
     )
 )
+
+(define (fast-iter2 b n a)
+    (cond 
+            ((= n 0) a)
+            ((= n 1) (* a b))
+            ( (even? n) (fast-iter2 (* b b) (/ n 2) a) )
+            (else (fast-iter2 b (- n 1) (* a b)))
+    )
+)
+
+(define (power2 b n)
+    (fast-iter2 b n 1)
+)
 (define (displaynewline x) 
   (display x)
   (display "\n")
 )
 
-(define x 97)
-(define n 31)
+(define x 31)
+(define n 37)
 (displaynewline (exprt x n))
 (displaynewline (power x n))
 (displaynewline (fast-expr x n))
+(displaynewline (power2 x n))
 
 
 (define (* a b)
@@ -72,8 +87,7 @@
 (define (mul a b)
     (mul-iter a b a)
 )
-(define a 21)
-(define b 100)
+(define a 2)
+(define b 1)
 (displaynewline (* a b))
 (displaynewline (mul a b))
-
