@@ -27,13 +27,15 @@
             (else (* base (fast-expr base (- n 1))))
     )
 )
-
+(define (square x)
+    (* x x)
+)
 (define (even? n) 
     (= (reminder n 2 ) 0)
 )
 
 (define (reminder n x)
-    (if  (< n x) x
+    (if  (< n x) n
         (reminder (- n x) x)
     )
 )
@@ -55,8 +57,8 @@
   (display "\n")
 )
 
-(define x 31)
-(define n 37)
+(define x 2)
+(define n 3)
 (displaynewline (exprt x n))
 (displaynewline (power x n))
 (displaynewline (fast-expr x n))
