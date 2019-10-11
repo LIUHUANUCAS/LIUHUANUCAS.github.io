@@ -1,0 +1,112 @@
+(display "rational number\n")
+
+(define (make-rat a b)
+  (let 
+        (
+          (g (gcd a b))
+          (|a| (abs a))
+          (|b| (abs b))
+          (si (sign (* a b)) )
+        )
+        ; body 
+        (cons (p (/ |a| (gcd |a| |b|))  si) (/ |b| (gcd |a| |b|)) )
+  )
+)
+
+(define (p a s)
+  (if (positive? s) 
+      a 
+      (reverse a) 
+  )
+)
+(define (reverse x)
+  (- 0 x)
+)
+
+(define (sign x) 
+  (cond ((positive? x) 1)
+    ((negative? x) -1)
+    (else 0)
+    )
+)
+
+(define (positive? x)
+  (> x 0)
+)
+
+(define (negative? x)
+  (< x 0)
+)
+
+(define (abs x)
+  (if (positive? x) 
+      x
+      (reverse x)
+  )
+)
+(define (sub-rat x y)
+  (make-rat (- (* (car x) (cdr y)) (* (cdr x) (car y)) )
+    (* (cdr x) (cdr y))
+  )
+)
+
+(define (add-rat x y)
+  (make-rat (+ (* (car x) (cdr y)) (* (cdr x) (car y)) )
+    (* (cdr x) (cdr y))
+  )
+)
+(define (div-rat x y)
+  (make-rat (* (car x ) (cdr y)) 
+    (* (cdr x ) (car y))
+   )
+)
+(define (mul-rat x y)
+  (make-rat (* (car x ) (car y)) 
+    (* (cdr x ) (cdr y))
+   )
+)
+(define (equal-rat? x y)
+  ( = 
+    (* (car x) (cdr y))
+    (* (cdr x) (car y))
+  )
+)
+
+(define (gcd a b )
+    (if (= 0 b) 
+        a 
+        (gcd b (remainder a b))
+    )
+)
+
+(define (number x)
+  (car x)
+)
+
+(define (denom x)
+  (cdr x)
+)
+
+
+(define (square x) (* x x))
+(define (displaynewline x) 
+  (display x)
+  (display "\n")
+)
+(define (print-rat x)
+  (display (car x))
+  (display "/")
+  (display (cdr x))
+  (newline)
+)
+(displaynewline (number x))
+(print-rat (add-rat (make-rat 1 3) (make-rat -1 6)))
+
+(displaynewline (gcd 2 9))
+(displaynewline (sign -2))
+(displaynewline (sign 3))
+(displaynewline (abs -3))
+(displaynewline (abs 4))
+(print-rat (make-rat -5 6))
+(print-rat (make-rat -5 -6))
+
