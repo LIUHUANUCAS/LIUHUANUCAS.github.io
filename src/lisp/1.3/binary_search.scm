@@ -1,5 +1,30 @@
 (display "binary search\n")
 
+(define (sqrt2 x)
+  (fix-point (lambda (y) ( average y (/ x y))) 1.0 )
+)
+; not output 
+(define (sqrt x)
+  (fix-point (lambda (y) (/ x y)) 1.0 )
+)
+(define tolerance 0.001)
+(define (fix-point f first-guess)
+  (define (close-enough? v1 v2)
+    (< (abs (- v1 v2)) tolerance)
+  )
+  (define (try guess)
+    (
+      let ((next (f guess)))
+      (if (close-enough? next guess)
+        next
+        (try next)
+      )
+    )
+  )
+  (try first-guess)
+)
+
+
 (define (half-interval-method f a b)
   (let 
     (
@@ -68,7 +93,6 @@
   )
 )
 
-
 (define (displaynewline x)
   (display x)
   (display "\n")
@@ -82,3 +106,7 @@
 (displaynewline (half-interval-method sin 2.0 4.0 ))
 (displaynewline (half-interval-method (lambda (x) (+ x 2)) -3 4.0 ))
 (displaynewline (search (lambda (x ) (+ x 2)) -3 4.0))
+(displaynewline (fix-point cos 1.0))
+(displaynewline (fix-point (lambda (x) (+ (sin x) (cos x) )) 1.0)) 
+
+(displaynewline (sqrt2 2))
