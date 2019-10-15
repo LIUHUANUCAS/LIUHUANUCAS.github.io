@@ -110,3 +110,8 @@
 (displaynewline (fix-point (lambda (x) (+ (sin x) (cos x) )) 1.0)) 
 
 (displaynewline (sqrt2 2))
+(displaynewline (search (lambda (x) (- (cos x) x)) 0.0 1.0))
+(define pi 3.14)
+(displaynewline (search (lambda (x) (- (cos x) x)) 0.0 (/ pi 2)))
+; (displaynewline (fix-point (lambda (x) (- (cos x) x)) 1.0 ))
+(displaynewline (fix-point (lambda (x) (+ 1 (/ 1 x))) 0.5))
