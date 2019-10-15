@@ -1,5 +1,12 @@
 (display "binary search\n")
 
+(define (sqrt3 x)
+  (fix-point (average-dump (lambda (y) (/ x y))) 1.0)
+)
+
+(define (average-dump f)
+  (lambda (x) (average x (f x)))
+)
 (define (sqrt2 x)
   (fix-point (lambda (y) ( average y (/ x y))) 1.0 )
 )
@@ -115,3 +122,4 @@
 (displaynewline (search (lambda (x) (- (cos x) x)) 0.0 (/ pi 2)))
 ; (displaynewline (fix-point (lambda (x) (- (cos x) x)) 1.0 ))
 (displaynewline (fix-point (lambda (x) (+ 1 (/ 1 x))) 0.5))
+(displaynewline (sqrt3 2.0))
