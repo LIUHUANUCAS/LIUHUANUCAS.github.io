@@ -1,5 +1,19 @@
 (display "rational number\n")
 
+(define (rect-area rect)
+  (
+    let(
+          (c1 (abs(- (x-point (end-segment rect)) (x-point (start-segment rect)) )))
+          (c2 (abs(- (y-point (end-segment rect)) (y-point (start-segment rect)) )))
+          
+        )   
+        (* c1 c2)
+  )
+)
+(define (make-rectangle x1 y1 x2 y2)
+  (make-segment x1 y1 x2 y2)
+)
+
 (define (make-segment a b x y)
     ( cons (make-point a b)  (make-point x y) )
 )
@@ -42,9 +56,13 @@
 )
 
 (define (print-segment s)
+  (display "[")
+
   (print-point (start-segment s))
-  (display "->")
+  (display ",")
   (print-point (end-segment s))
+  (display "]")
+
   (newline)
 )
 
@@ -75,4 +93,9 @@
 (define p (make-segment 1 2 3 4))
 
 (print-point (mid-segment p))
+(newline)
+(define rect (make-rectangle 1 1 3 4))
+(print-segment rect)
+(display "areax=")
+(displaynewline  (rect-area rect))
 
