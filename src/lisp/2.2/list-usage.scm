@@ -21,7 +21,7 @@
 (define (list-append lista listb)
     (if (null? lista)
         listb
-        (cons ( (car lista) (list-append (cdr lista) listb)) )
+        (cons  (car lista) (list-append (cdr lista) listb) )
     )
 )
 ; get list index n
@@ -38,17 +38,13 @@
         (list-pair (cdr item))
     )
 )
-
+; reverse list 
 (define (reverse-list alist)
-    (define (reverse-help alist blist)
-        (if (null? (cdr alist))
-            (cons (car alist) blist)
-            (reverse-help (cdr alist) (cons blist (car alist)))
+    (if (null?  alist)
+        alist
+        (
+            list-append (reverse-list (cdr alist))  (list (car alist))
         )
-    )
-    (if (null? (cdr alist))
-        (alist) 
-        (reverse-help alist (list))
     )
 )
 (define (displaynewline x)
@@ -57,7 +53,7 @@
 )
 
 (define list-one-four (list 1 2 3 4))
-(define alist (list 1 2 3 4 6 7 ))
+(define alist (list 1 2 3 4))
 (define blist (list 1 4 9 16 25))
 (displaynewline (cdr list-one-four))
 (displaynewline (list-ref list-one-four 2))
@@ -67,6 +63,6 @@
 (displaynewline (list-pair alist))
 (displaynewline (list-pair blist))
 (displaynewline (list-pair list-one-four))
-; (displaynewline (list-append alist blist))
-; (displaynewline list-one-four)
-(displaynewline (reverse-list alist))
+(displaynewline (list-append alist blist))
+(displaynewline alist)
+(displaynewline (reverse-list (append alist blist)))
