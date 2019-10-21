@@ -1,10 +1,11 @@
 (display "map & mul args\n")
 (define (for-each2 f l)
-    (if (null? l)
-        l
+  
+    (if (null? l )
+        #t
         (   
             (f (car l))
-            (null? (for-each2 f (cdr l)))
+            (for-each2 f (cdr l))
         )
     )
 )
@@ -74,6 +75,11 @@
 (displaynewline (square-list (list -1 -2 -3 -4)))
 (displaynewline (square-list2 (list -1 -2 -3 -4)))
 ; (for-each2 (lambda (x) (newline) (display x) ) list-one-four)
-(for-each2 displaynewline list-one-four)
+(for-each displaynewline list-one-four)
+(displaynewline "end ...")
+; (for-each2 displaynewline list-one-four)
+(displaynewline (cons (list 1 2) (list 3 4)))
+(displaynewline (list (list 1 2) (list 3 4)))
+(displaynewline (cons 1 (cons 2 3)))
 
 
