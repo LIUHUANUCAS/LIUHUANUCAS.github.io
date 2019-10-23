@@ -30,3 +30,24 @@
 (displaynewline (cons 1 (list  3 4 )))
 (displaynewline (cons 3 (cons 4 '())))
 (displaynewline (count-leaves x))
+
+(displaynewline (list (list 1 2) (list 3 4)))
+(displaynewline (cons (list 1 2) (list 3 4)))
+(displaynewline (cons (cons 1 2) (list 3 4)))
+(displaynewline (cons 1 (cons 2 (cons 3 '())) ))
+
+(displaynewline (list 1 (list  2 (list 3 4))))
+(displaynewline  (list  2 (list 3 4)))
+
+(displaynewline (car (cdr (car (cdr (cdr (list 1 3 (list 5 7) 9)) )))))
+(displaynewline (car (car (list (list 7)))) )
+(define third (list 1 (list 2 (list 3 (list 4 (list 5 (list 6 7)))))))
+; (displaynewline third)
+(displaynewline   (car (cdr (car (cdr (car (cdr (car (cdr (car (cdr (car (cdr third)))))))))))))
+; (displaynewline   (cdr (cdr (cdr (cdr third)))))
+(define x (list 1 2 3 ))
+(define y (list 4 5 6 ))
+(displaynewline (append x y ))
+(displaynewline (cons x y ))
+(displaynewline (list x y ))
+
