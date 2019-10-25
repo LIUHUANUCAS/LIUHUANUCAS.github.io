@@ -1,4 +1,4 @@
-(display "list\n")
+(display "tree \n")
 ; get list length 
 (define (length items)
     (if (null? items)
@@ -12,7 +12,12 @@
       (else (+ (count-leaves (car x)) (count-leaves (cdr x))))
       )
 )
-
+(define (fringe x)
+    (cond ((null? x) x)
+        ((not (pair? x)) (list x))
+        (else (append (fringe (car x)) (fringe (cdr x))))
+        )
+)
 
 (define (displaynewline x)
     (display x)
@@ -71,6 +76,9 @@
 (displaynewline (deep-reverse  (cons x y)))
 ; (displaynewline ( car (cdr   (list x y ))))
 (displaynewline  (cdr   (list x y )))
+(define x1 (list (list 1 2) (list 3 4)))
+(displaynewline  (fringe (list x1 x1)))
+(displaynewline  (fringe x1))
 
 
 
