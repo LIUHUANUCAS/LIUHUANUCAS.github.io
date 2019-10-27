@@ -1,4 +1,16 @@
 (display "list proc\n")
+(define (reverse-r seq)
+    (fold-right (lambda (x y) 
+                (   if (null? y) 
+                        (list x)
+                        (append y (list x))
+                ))
+        '() seq)
+)
+
+(define (reverse-l seq)
+    (fold-left (lambda (x y) (cons y x )) '() seq)
+)
 (define ( fold-right op init seq ) 
         (accumulate op init seq )
 )
@@ -22,6 +34,12 @@
     )
 )
 
+(define (accumulate op initial sequence)
+    (if (null? sequence) initial
+        (op (car sequence) (accumulate op initial (cdr sequence)))
+    )
+)
+
 (define (enumerate-tree tree )
     (cond ((null? tree) tree)
         ((not (pair? tree)) (list tree))
@@ -29,11 +47,6 @@
     )
 )
 
-(define (accumulate op initial sequence)
-    (if (null? sequence) initial
-        (op (car sequence) (accumulate op initial (cdr sequence)))
-    )
-)
 (define (filter predicate sequence)
     (cond ((null? sequence) '())
         (   (predicate (car sequence)) 
@@ -85,4 +98,7 @@
 (displaynewline ( fold-left / 1 (list 1 2 3)))
 (displaynewline ( fold-right / 1 (list 1 2 3)))
 (displaynewline ( accumulate / 1 (list 1 2 3)))
+(define zz (list 1 2 3 4 5 6 7))
+(displaynewline ( reverse-r zz ))
+(displaynewline ( reverse-l zz ))
 
