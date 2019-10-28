@@ -1,5 +1,13 @@
 (display "map tree\n")
 
+(define (subset s)
+    (if (null? s) 
+        (list s)
+        (let ((rest (subset (cdr s))))
+            (append rest (map (lambda (x) (append x (list (car s) ))) rest) )
+        )
+    )
+)
 (define (square x)
     (* x x)
 )
@@ -73,5 +81,7 @@
 ; (displaynewline (square-tree x1))
 (displaynewline (square-tree-map x1))
 (displaynewline (square-tree-proc x1 ))
+
+(displaynewline (subset (list 1 2 3 4)))
 
 
