@@ -182,7 +182,7 @@
 (displaynewline (map car z))
 (displaynewline (map cdr z))
 (displaynewline (accumulate-n + 0 z))
-
+(displaynewline (pair? (list (list 1 3) 2)))
 
 
 
