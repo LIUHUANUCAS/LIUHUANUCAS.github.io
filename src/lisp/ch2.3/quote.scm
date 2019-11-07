@@ -35,6 +35,7 @@
 (displaynewline (equal? '(this is a list ) '(this (is a ) list )))
 (displaynewline (equal? '(this a ) '(this (is a ) list )))
 (displaynewline (equal? '(a) '(a b)))
-(displaynewline (car ''abc) )
+(displaynewline (car ''abc) ) ;2.55
 (displaynewline (car '(' ab bc)) )
+(displaynewline (car (quote  ( quote ab bc) ) ));2.55
 
