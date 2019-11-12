@@ -1,15 +1,15 @@
 (display "binary tree\n")
-(define (key x)
-    x
-)
+
 (define (lookup given-key set-of-records) 
     (cond 
         ( (null? set-of-records) '#f )
-        ( (equal? given-key (key (car set-of-records))) (car (set-of-records)) )
+        ( (equal? given-key  (key (car set-of-records))) (car set-of-records) )
         (else (lookup given-key (cdr set-of-records)))
     )
 )
-
+(define (key x)
+    x
+)
 ; 2.63
 (define (tree->list-1 tree )
     (if (null? tree) 
@@ -28,6 +28,15 @@
     (copy-to-list tree '())
 )
 
+; 2.66
+(define (lookup-tree x tree)
+    (cond 
+        ( (null? tree) '#f)
+        ( (= x (key (entry tree)) ) (entry tree))
+        ((< x (key (entry tree)))  (lookup-tree x (left-branch tree)) )
+        ((> x (key (entry tree)))  (lookup-tree x (right-branch tree)) )
+    )
+)
 
 (define (adjoin-set x set)
     (cond 
@@ -75,7 +84,8 @@
 (define x (make-tree 3 '() '() ))
 (displaynewline  x )
 (displaynewline "lookup keys")
-; (displaynewline (lookup 1 '(1 2 3 4) ))
+; (displaynewline (lookup 1 (list 1 2 3 4) ))
+ (displaynewline (lookup 7 (list 1 2 3 4) ))
 (displaynewline (equal? 3 3 ))
 (displaynewline (cdr  '(1 4) ))
 
@@ -87,6 +97,9 @@
 (define x (adjoin-set 10 x ))
 (define x (adjoin-set -2 x ))
 (displaynewline  x )
+(displaynewline "lookup tree")
+
+(displaynewline (lookup-tree 5 x))
 
 (displaynewline  (tree->list-1 x ))
 (displaynewline  (tree->list-2 x ))
