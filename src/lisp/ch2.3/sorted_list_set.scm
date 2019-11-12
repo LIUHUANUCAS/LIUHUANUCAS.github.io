@@ -1,7 +1,7 @@
 (display "set\n")
 
-
-(define (element-of-set? x set)
+; 2.61
+(define (element-of-set? x set) 
 	(cond
 		((null? set) '#f)
 		((= x (car set) ) '#t)
@@ -9,7 +9,7 @@
 		(else (element-of-set? x (cdr set)))
 	)
 )
-
+; 2.61
 (define (union-set set1 set2)
     (cond 
         ((null? set1) set2)
@@ -18,6 +18,7 @@
         (else (cons (car set1) (union-set (cdr set1) set2)))
     )
 )
+; 2.61
 (define (adjoin-set x set)
     (cond  ((null? set) (list x) )
         ((= x (car set)) set)
