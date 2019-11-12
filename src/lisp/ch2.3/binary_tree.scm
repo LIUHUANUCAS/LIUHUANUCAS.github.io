@@ -1,4 +1,14 @@
 (display "binary tree\n")
+(define (key x)
+    x
+)
+(define (lookup given-key set-of-records) 
+    (cond 
+        ( (null? set-of-records) '#f )
+        ( (equal? given-key (key (car set-of-records))) (car (set-of-records)) )
+        (else (lookup given-key (cdr set-of-records)))
+    )
+)
 
 ; 2.63
 (define (tree->list-1 tree )
@@ -64,6 +74,11 @@
 )
 (define x (make-tree 3 '() '() ))
 (displaynewline  x )
+(displaynewline "lookup keys")
+; (displaynewline (lookup 1 '(1 2 3 4) ))
+(displaynewline (equal? 3 3 ))
+(displaynewline (cdr  '(1 4) ))
+
 (displaynewline  (element-of-set?  1 x ))
 
 (define x (adjoin-set 1 x ))
@@ -72,6 +87,7 @@
 (define x (adjoin-set 10 x ))
 (define x (adjoin-set -2 x ))
 (displaynewline  x )
+
 (displaynewline  (tree->list-1 x ))
 (displaynewline  (tree->list-2 x ))
 
@@ -83,3 +99,4 @@
 
 (displaynewline (tree->list-1 (add-to-tree '() (list  5 3   9 1 7 11))))
 (displaynewline (tree->list-2 (add-to-tree '() (list  5 3   9 1 7 11))))
+
