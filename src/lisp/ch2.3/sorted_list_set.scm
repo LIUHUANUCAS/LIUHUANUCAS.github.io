@@ -1,4 +1,4 @@
-(display "set\n")
+(display "sorted list set\n")
 
 ; 2.61
 (define (element-of-set? x set) 
