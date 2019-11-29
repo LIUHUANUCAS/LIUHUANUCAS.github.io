@@ -1,4 +1,23 @@
 (display "with draw\n")
+
+
+; 3.2
+(define (make-monitor f)
+    (define (wrap-f n )
+        (lambda (x) 
+            (cond 
+                ((eq? x 'reset-count) (set! n 0) n )
+                ((eq? x 'how-many-calls?) n)
+                (else (
+                    begin (set! n (+ 1 n)) (f x)
+                    )
+                )
+            )
+        )
+    )
+    (wrap-f 0)
+)
+
 ; 3.1
 (define (make-accumulator init)
     (lambda (n) 
@@ -124,10 +143,25 @@
         (displaynewline (A 100))
     )
 )
+(define (test-make-monitor)
+     (let 
+        ((f (make-monitor sqrt)))
+        (displaynewline (f 100))
+        (displaynewline (f 'how-many-calls?))
+        (displaynewline (f 100))
+        (displaynewline (f 100))
+        (displaynewline (f 'how-many-calls?))
+        (displaynewline (f 100))
+        (displaynewline (f 'reset-count))
+        (displaynewline (f 100))
+        (displaynewline (f 'how-many-calls?))
 
+    )
+)
 (test-withdraw)
 (test-new-withdraw)
 (test-make-withdraw)
 (test-make-account)
 (test-make-accumulator)
+(test-make-monitor)
 
