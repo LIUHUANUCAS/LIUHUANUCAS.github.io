@@ -1,0 +1,22 @@
+(display "reverse list  car-cdr \n")
+(define (displaynewline x)
+    (display x)
+    (newline)
+)
+
+(define (set-to-wow! x)
+    (set-car! (car x) 'wow)
+    x
+)
+
+(define x (list 'a 'b))
+(define z1 (cons x x))
+(define z2 (cons (list 'a 'b) (list 'a 'b)))
+(displaynewline z1)
+(displaynewline z2)
+(set-to-wow! z1 )
+(displaynewline z1)
+(set-to-wow! z2 )
+(displaynewline z2)
+(displaynewline (eq? (car z1) (cdr z1)))
+(displaynewline (eq? (car z2) (cdr z2)))
