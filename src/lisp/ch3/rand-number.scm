@@ -38,6 +38,7 @@
 )
 
 (displaynewline (rand))
+(displaynewline (rand))
 (displaynewline (estimate-pi (expt 2 20)))
 
 
