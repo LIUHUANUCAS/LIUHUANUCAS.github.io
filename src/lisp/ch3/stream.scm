@@ -58,7 +58,35 @@
 (define (display-stream s)
     (stream-for-each displaynewline s)
 )
+
+(define (mem-proc proc)
+    (let ((already-run? '#f )(result '#f))
+        (lambda ()
+            (if (not already-run? ) 
+                (begin (set! result (proc))
+                    (set! already-run? '#t)
+                    result
+                )
+                result
+            )
+        )
+    )
+)
+(define (delay-mem x)
+    (mem-proc (lambda () (x) ))
+)
 ;----------------------stream end--------------
+(define (stream-map proc . argstreams)
+    (if (stream-null? (car argstreams))
+        the-empty-stream
+        (
+            if (stream-null? (stream-cdr argstreams))
+            (apply proc (map (lambda (x) (cons (stream-car x) (stream-cdr x))) argstreams))
+            (apply stream-map (cons proc (map stream-cdr argstreams)))
+        )
+    )
+)
+; -----------------------stream questions
 (define (stream-enumerate-interval low high)
     (if (> low high)
         the-empty-stream
@@ -105,9 +133,26 @@
 
 (displaynewline (sum-primes 1 10))
 (define s (stream-enumerate-interval 10 20))
+(define y (stream-enumerate-interval 1 10))
 (display-stream s)
 (displaynewline "stream-filter")
 ; (display-stream (stream-filter even? s))
 (display-stream (stream-filter even? s))
 ; (displaynewline (display-stream (stream-enumerate-interval 10 20)))
+(displaynewline (map + (list 1 2 3) (list 1 2 3)))
+; (displaynewline (stream-map + s))
+
+(define (map-stream proc s)
+    (if (stream-null? s)
+        the-empty-stream 
+        (cons-stream (proc (stream-car s)) (map-stream proc (stream-cdr s)))
+        ; (apply proc (map (proc (stream-car s)) (map-stream proc (stream-cdr s)))
+    )
+)
+(displaynewline "map-stream")
+(define x (map-stream square s))
+(display-stream x)
+
+; (displaynewline (apply +  (list 1 2 3) ))
+; (displaynewline (map + s))
 
